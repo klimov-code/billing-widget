@@ -1,0 +1,10 @@
+{
+  "*.{js,jsx,ts,tsx}": ["pnpm lint:js", "pnpm format"],
+  "{!(package|tsconfig)*.json,*.code-snippets,.!(browserslist|npm)*rc}": [
+    "prettier --write --loglevel warn --parser json"
+  ],
+  "package.json": ["pnpm format"],
+  "*.svg": ["svgo"],
+  "*.{scss,html}": ["pnpm lint:css", "pnpm format"],
+  "*.md": ["pnpm format"]
+}

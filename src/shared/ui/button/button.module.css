@@ -1,0 +1,103 @@
+.btn {
+  @apply relative cursor-pointer;
+
+  @apply border-0 rounded;
+
+  &:focus {
+    @apply outline-none;
+  }
+}
+
+.focused {
+  @apply shadow-focus;
+}
+
+.inner {
+  @apply flex justify-center items-center;
+
+  @apply leading-6;
+}
+
+.xs {
+  @apply py-1 px-3 text-14;
+}
+
+.s {
+  @apply py-2 px-3 text-16;
+}
+
+.m {
+  @apply py-3 px-4 text-16;
+}
+
+.l {
+  @apply p-4 text-16;
+}
+
+.fluid {
+  @apply w-full;
+}
+
+.primary {
+  @apply bg-primary text-white border border-solid border-primary;
+
+  &:hover {
+    @apply bg-primary-dark-100 border-primary-dark-100;
+  }
+
+  &:active {
+    @apply bg-primary-dark-200 border-primary-dark-200;
+  }
+
+  &:disabled {
+    @apply bg-gray-light-800 text-gray-light-400 border-gray-light-800;
+  }
+}
+
+.secondary {
+  @apply bg-gray-light-900 text-gray border border-solid border-gray-light-900;
+
+  &:hover {
+    @apply bg-gray-light-800 border-gray-light-800;
+  }
+
+  &:active {
+    @apply bg-gray-light-700 border-gray-light-700;
+  }
+
+  &:disabled {
+    @apply bg-gray-light-800 text-gray-light-400 border-gray-light-800;
+  }
+}
+
+.tertiary {
+  @apply bg-white text-gray border border-solid border-gray-light-700;
+
+  &:hover {
+    @apply bg-gray-light-1000;
+  }
+
+  &:active {
+    @apply bg-gray-light-900;
+  }
+
+  &:disabled {
+    @apply bg-gray-light-800 text-gray-light-400 border-gray-light-800;
+  }
+}
+
+.text {
+  @apply bg-transparent text-primary;
+
+  &:hover {
+    @apply text-primary-dark-100;
+  }
+
+  &:active {
+    @apply text-primary-dark-200;
+  }
+
+  &:disabled {
+    @apply text-gray-light-400;
+  }
+}

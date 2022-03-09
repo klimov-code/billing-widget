@@ -1,0 +1,33 @@
+.overlay {
+  @apply absolute inset-0 flex justify-center items-center;
+
+  @apply w-screen h-screen bg-backdrop;
+}
+
+.modal {
+  @apply px-6 py-4 w-168 max-w-168;
+
+  @apply bg-white rounded-2;
+}
+
+.small {
+  @apply w-136;
+}
+
+.medium {
+  @apply w-168;
+}
+
+.header {
+  @apply pb-4;
+
+  @apply flex justify-between;
+}
+
+.title {
+  @apply text-18 text-left leading-6 font-700;
+}
+
+.body {
+  @apply py-4;
+}

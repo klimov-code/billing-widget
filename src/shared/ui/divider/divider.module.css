@@ -1,0 +1,13 @@
+.divider {
+  height: 1px;
+
+  @apply w-full;
+
+  @apply border-none bg-gray-light-800;
+}
+
+.vertical {
+  width: 1px;
+
+  @apply h-full;
+}

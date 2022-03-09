@@ -3,12 +3,19 @@ module.exports = {
   env: {
     browser: true,
   },
-  extends: ['plugin:effector/recommended', 'plugin:effector/scope', 'plugin:prettier/recommended'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:effector/recommended',
+    'plugin:effector/scope',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:prettier/recommended',
+  ],
   plugins: ['effector', 'simple-import-sort', 'import'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2021,
-    parser: '@typescript-eslint/parser',
   },
   rules: {
     'no-console': ['error', { allow: ['warn', 'error'] }],
@@ -35,5 +42,6 @@ module.exports = {
     'import/first': 'error',
     'import/newline-after-import': 'error',
     'import/no-duplicates': 'error',
+    'react/prop-types': 0,
   },
 };

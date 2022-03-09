@@ -1,7 +1,11 @@
+import babel from '@rollup/plugin-babel';
+import { presetTypography } from '@unocss/preset-typography';
+import presetUno from '@unocss/preset-uno';
+import transformerDirective from '@unocss/transformer-directives';
+import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
+import unocss from 'unocss/vite';
 import { defineConfig } from 'vite';
-import babel from '@rollup/plugin-babel'
-import react from '@vitejs/plugin-react'
 import eslint from 'vite-plugin-eslint';
 
 export default defineConfig(() => {
@@ -25,6 +29,10 @@ export default defineConfig(() => {
         babelHelpers: 'bundled',
       }),
       react(),
+      unocss({
+        presets: [presetUno(), presetTypography()],
+        transformers: [transformerDirective()],
+      }),
       eslint(),
     ],
     server: {

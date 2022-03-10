@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import { Button, Divider } from '@app/shared/ui';
 
-import styles from './Modal.module.css';
+import styles from './card.module.css';
 
 interface Props {
   title: string;

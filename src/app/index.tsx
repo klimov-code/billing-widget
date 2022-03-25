@@ -7,7 +7,7 @@ import './index.css';
 const container = document.getElementById('app');
 
 render(
-  <div>
+  <div className="p-5">
     <Card title="title" />
     <Divider />
     <Button>text</Button>

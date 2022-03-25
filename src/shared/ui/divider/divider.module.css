@@ -3,7 +3,7 @@
 
   @apply w-full;
 
-  @apply border-none bg-gray-light-800;
+  @apply border-none bg-gray-500;
 }
 
 .vertical {

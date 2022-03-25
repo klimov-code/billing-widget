@@ -9,7 +9,7 @@
 }
 
 .focused {
-  @apply shadow-focus;
+  @apply focus:shadow;
 }
 
 .inner {
@@ -19,19 +19,19 @@
 }
 
 .xs {
-  @apply py-1 px-3 text-14;
+  @apply py-1 px-3 text-[14px];
 }
 
 .s {
-  @apply py-2 px-3 text-16;
+  @apply py-2 px-3 text-[16px];
 }
 
 .m {
-  @apply py-3 px-4 text-16;
+  @apply py-3 px-4 text-[16px];
 }
 
 .l {
-  @apply p-4 text-16;
+  @apply p-4 text-[16px];
 }
 
 .fluid {
@@ -39,65 +39,49 @@
 }
 
 .primary {
-  @apply bg-primary text-white border border-solid border-primary;
+  @apply bg-green-500 text-white border border-solid border-green-500;
 
   &:hover {
-    @apply bg-primary-dark-100 border-primary-dark-100;
+    @apply bg-green-200 border-green-200;
   }
 
   &:active {
-    @apply bg-primary-dark-200 border-primary-dark-200;
+    @apply bg-green-300 border-green-300;
   }
 
   &:disabled {
-    @apply bg-gray-light-800 text-gray-light-400 border-gray-light-800;
+    @apply bg-emerald-100 text-emerald-400 border-emerald-100;
   }
 }
 
 .secondary {
-  @apply bg-gray-light-900 text-gray border border-solid border-gray-light-900;
+  @apply bg-gray-100 text-gray-800 border border-solid border-gray-100;
 
   &:hover {
-    @apply bg-gray-light-800 border-gray-light-800;
+    @apply bg-gray-200 border-gray-200;
   }
 
   &:active {
-    @apply bg-gray-light-700 border-gray-light-700;
+    @apply bg-gray-300 border-gray-300;
   }
 
   &:disabled {
-    @apply bg-gray-light-800 text-gray-light-400 border-gray-light-800;
-  }
-}
-
-.tertiary {
-  @apply bg-white text-gray border border-solid border-gray-light-700;
-
-  &:hover {
-    @apply bg-gray-light-1000;
-  }
-
-  &:active {
-    @apply bg-gray-light-900;
-  }
-
-  &:disabled {
-    @apply bg-gray-light-800 text-gray-light-400 border-gray-light-800;
+    @apply bg-gray-400 text-gray-600 border-gray-400;
   }
 }
 
 .text {
-  @apply bg-transparent text-primary;
+  @apply bg-transparent text-gray-900;
 
   &:hover {
-    @apply text-primary-dark-100;
+    @apply text-gray-800;
   }
 
   &:active {
-    @apply text-primary-dark-200;
+    @apply text-gray-700;
   }
 
   &:disabled {
-    @apply text-gray-light-400;
+    @apply text-gray-600;
   }
 }

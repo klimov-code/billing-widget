@@ -5,7 +5,7 @@ import { useFocusVisible, useMergeRef } from '@app/shared/lib/hooks';
 
 import styles from './button.module.css';
 
-type Variant = 'primary' | 'secondary' | 'tertiary' | 'text' | undefined;
+type Variant = 'primary' | 'secondary' | 'text' | undefined;
 type Size = 'xs' | 's' | 'm' | 'l' | undefined;
 type Width = 'auto' | 'fluid' | undefined;
 type Ref = HTMLButtonElement;

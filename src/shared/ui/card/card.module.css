@@ -1,21 +1,15 @@
-.overlay {
-  @apply absolute inset-0 flex justify-center items-center;
+.card {
+  @apply px-6 py-4 w-[24rem] max-w-[24rem];
 
-  @apply w-screen h-screen bg-backdrop;
-}
-
-.modal {
-  @apply px-6 py-4 w-168 max-w-168;
-
-  @apply bg-white rounded-2;
+  @apply bg-white rounded-[0.5rem] shadow-xl;
 }
 
 .small {
-  @apply w-136;
+  @apply w-[34rem];
 }
 
 .medium {
-  @apply w-168;
+  @apply w-[42rem];
 }
 
 .header {
@@ -25,7 +19,7 @@
 }
 
 .title {
-  @apply text-18 text-left leading-6 font-700;
+  @apply text-[1.5rem] text-left leading-6 font-bold;
 }
 
 .body {

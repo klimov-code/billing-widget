@@ -1,21 +1,24 @@
+import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 import { Button, Divider } from '@app/shared/ui';
 
 import styles from './card.module.css';
 
+type Ref = HTMLDivElement;
+
 interface Props {
   title: string;
 }
 
-const Card = ({ title, children }: React.HTMLAttributes<HTMLElement> & Props) => {
+const Card = forwardRef<Ref, React.HTMLAttributes<HTMLDivElement> & Props>(function Card({ title, children }, ref) {
   return (
-    <div className={clsx(styles.card)}>
+    <div ref={ref} className={clsx(styles.card)}>
       <div className={clsx(styles.header)}>
         <h2 id={title} className={clsx(styles.title)}>
           {title}
         </h2>
-        <Button variant="primary" size="xs" className="py-0 px-0 text-24">
+        <Button variant="primary" size="xs">
           Закрыть
         </Button>
       </div>
@@ -23,6 +26,6 @@ const Card = ({ title, children }: React.HTMLAttributes<HTMLElement> & Props) =>
       <div className={clsx(styles.body)}>{children}</div>
     </div>
   );
-};
+});
 
 export default Card;

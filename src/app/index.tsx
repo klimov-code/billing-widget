@@ -2,8 +2,6 @@ import { render } from 'react-dom';
 
 import { Button, Card, Divider } from '@app/shared/ui';
 
-import './index.css';
-
 const container = document.getElementById('app');
 
 render(

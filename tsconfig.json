@@ -17,7 +17,7 @@
       "@app/*": ["./src/*"],
       "#types/*": ["./src/shared/types/*"]
     },
-    "types": ["vite/client"],
+    "types": ["vite/client", "@honkhonk/vite-plugin-svgr/client"],
     "lib": [
       "esnext",
       "dom",

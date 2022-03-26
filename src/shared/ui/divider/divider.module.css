@@ -1,13 +1,9 @@
 .divider {
-  height: 1px;
-
-  @apply w-full;
+  @apply h-[1px] w-full;
 
   @apply border-none bg-gray-500;
 }
 
 .vertical {
-  width: 1px;
-
-  @apply h-full;
+  @apply w-[1px] h-full;
 }

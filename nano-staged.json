@@ -5,6 +5,6 @@
   ],
   "package.json": ["pnpm format"],
   "*.svg": ["svgo"],
-  "*.{scss,html}": ["pnpm lint:css", "pnpm format"],
+  "*.{css,html}": ["pnpm lint:css", "pnpm format"],
   "*.md": ["pnpm format"]
 }

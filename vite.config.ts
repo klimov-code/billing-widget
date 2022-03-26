@@ -1,3 +1,4 @@
+import svgr from '@honkhonk/vite-plugin-svgr';
 import babel from '@rollup/plugin-babel';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
@@ -25,6 +26,7 @@ export default defineConfig(() => {
         babelHelpers: 'bundled',
       }),
       react(),
+      svgr(),
       eslint(),
     ],
     server: {

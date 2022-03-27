@@ -1,0 +1,4 @@
+.app {
+  @apply w-screen h-screen;
+  @apply flex justify-center items-center;
+}

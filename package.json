@@ -30,6 +30,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@carbon/icons-react": "^10.49.0",
     "are-passive-events-supported": "^1.1.1",
     "clsx": "^1.1.1",
     "effector": "^22.2.0",
@@ -47,6 +48,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/line-clamp": "^0.3.1",
     "@tailwindcss/typography": "^0.5.2",
+    "@types/carbon__icons-react": "^10.31.2",
     "@types/node": "^17.0.23",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",

@@ -1,7 +1,6 @@
 .card {
   @apply px-6 py-4 w-[24rem] max-w-[24rem];
-
-  @apply bg-white rounded-[0.5rem] shadow-xl;
+  @apply bg-white rounded-[0.5rem] drop-shadow-2xl;
 }
 
 .small {
@@ -14,7 +13,6 @@
 
 .header {
   @apply pb-4;
-
   @apply flex justify-between;
 }
 

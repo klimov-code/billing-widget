@@ -1,8 +1,6 @@
 .btn {
   @apply relative cursor-pointer;
-
   @apply border-0 rounded;
-
   @apply focus:outline-none;
 }
 
@@ -12,7 +10,6 @@
 
 .inner {
   @apply flex justify-center items-center;
-
   @apply leading-6;
 }
 
@@ -38,30 +35,21 @@
 
 .primary {
   @apply bg-green-500 text-white border border-solid border-green-500;
-
-  @apply hover:bg-green-200 hover:border-green-200;
-
-  @apply active:bg-green-300 active:border-green-300;
-
+  @apply hover:bg-green-400 hover:border-green-400;
+  @apply active:bg-green-600 active:border-green-600;
   @apply disabled:bg-emerald-100 disabled:text-emerald-400 disabled:border-emerald-100;
 }
 
 .secondary {
   @apply bg-gray-100 text-gray-800 border border-solid border-gray-100;
-
   @apply hover:bg-gray-200 hover:border-gray-200;
-
   @apply active:bg-gray-300 active:border-gray-300;
-
   @apply disabled:bg-gray-400 disabled:text-gray-600 disabled:border-gray-400;
 }
 
 .text {
   @apply bg-transparent text-gray-900;
-
   @apply hover:text-gray-800;
-
   @apply active:text-gray-700;
-
   @apply disabled:text-gray-600;
 }

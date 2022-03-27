@@ -1,8 +1,6 @@
 import { forwardRef } from 'react';
 import clsx from 'clsx';
 
-import { Button, Divider } from '@app/shared/ui';
-
 import styles from './card.module.css';
 
 type Ref = HTMLDivElement;
@@ -18,11 +16,7 @@ const Card = forwardRef<Ref, React.HTMLAttributes<HTMLDivElement> & Props>(funct
         <h2 id={title} className={clsx(styles.title)}>
           {title}
         </h2>
-        <Button variant="primary" size="xs">
-          Закрыть
-        </Button>
       </div>
-      <Divider />
       <div className={clsx(styles.body)}>{children}</div>
     </div>
   );

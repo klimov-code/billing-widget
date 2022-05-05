@@ -1,8 +1,0 @@
-.divider {
-  @apply h-[1px] w-full;
-  @apply border-none bg-gray-500;
-}
-
-.vertical {
-  @apply w-[1px] h-full;
-}

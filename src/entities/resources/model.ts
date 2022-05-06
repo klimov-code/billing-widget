@@ -1,5 +1,4 @@
 import { createEvent, createStore, sample } from 'effector';
-import { debounce } from 'patronum';
 
 interface Resource {
   code: string;
@@ -9,10 +8,15 @@ interface Resource {
 
 export const resourceChanged = createEvent<Resource>();
 
-const $domains = createStore(5);
-const $servers = createStore(6);
+const $domainCount = createStore(5);
+const $serverCount = createStore(6);
 export const $resources = createStore<Resource[]>([]);
-export const $resourcesMeta = createStore(new Map<string, Resource>());
+export const $resourcesMeta = createStore(
+  new Map<string, Resource>([
+    ['domain', { code: 'domain', quantity: 3, unit: 'шт.' }],
+    ['server', { code: 'domain', quantity: 2, unit: 'шт.' }],
+  ]),
+);
 
 $resourcesMeta.on(resourceChanged, (resources, { code, quantity, unit }) => {
   resources.set(code, { code, quantity, unit });
@@ -22,23 +26,17 @@ $resourcesMeta.on(resourceChanged, (resources, { code, quantity, unit }) => {
 $resources.on($resourcesMeta, (_, meta) => [...meta.values()]);
 
 sample({
-  source: debounce({
-    source: $domains,
-    timeout: 200,
-  }),
-  fn: (domains) => {
-    return { code: 'domain', quantity: domains };
+  source: $domainCount,
+  fn: (count) => {
+    return { code: 'domain', quantity: count };
   },
   target: resourceChanged,
 });
 
 sample({
-  source: debounce({
-    source: $servers,
-    timeout: 200,
-  }),
-  fn: (servers) => {
-    return { code: 'server', quantity: servers };
+  source: $serverCount,
+  fn: (count) => {
+    return { code: 'server', quantity: count };
   },
   target: resourceChanged,
 });

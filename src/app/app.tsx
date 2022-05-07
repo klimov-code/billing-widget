@@ -1,9 +1,10 @@
 import PaymentIcon from '@mui/icons-material/Payment';
 import { LoadingButton } from '@mui/lab';
-import { Card, CardContent, CardHeader, Container, Divider, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, CardHeader, Container, Divider, Typography } from '@mui/material';
 
 import { TrialBanner } from '@app/entities/viewer';
-import { BillingList } from '@app/features/billing';
+import { BillingList } from '@app/features/billing-list';
+import { PeriodSwitch } from '@app/features/period-switch';
 
 export const App = () => {
   return (
@@ -18,21 +19,27 @@ export const App = () => {
         />
         <CardContent>
           <BillingList />
+
           <Divider sx={{ paddingTop: 1.5 }} />
+
           <TrialBanner />
 
+          <PeriodSwitch />
+        </CardContent>
+
+        <CardActions>
           <LoadingButton
             variant="contained"
             color="success"
-            fullWidth
+            fullWidth={true}
             size="large"
             loading={false}
             loadingPosition="start"
-            startIcon={<PaymentIcon fontSize="inherit" className="mr-2" />}
+            startIcon={<PaymentIcon fontSize="inherit" />}
           >
             Checkout
           </LoadingButton>
-        </CardContent>
+        </CardActions>
       </Card>
     </Container>
   );

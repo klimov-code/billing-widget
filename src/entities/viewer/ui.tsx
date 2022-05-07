@@ -1,10 +1,10 @@
 import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material';
 import { useStore } from 'effector-react';
 
-import { $trial, trialUpdated } from './model';
+import { $isTrial, trialUpdated } from './model';
 
 export const TrialBanner = () => {
-  const trial = useStore($trial);
+  const isTrial = useStore($isTrial);
 
   return (
     <Box sx={{ py: 2 }}>
@@ -14,7 +14,7 @@ export const TrialBanner = () => {
           <Checkbox
             sx={{ '& .MuiSvgIcon-root': { fontSize: 32 } }}
             color="success"
-            checked={trial}
+            checked={isTrial}
             onChange={(event) => trialUpdated(event.target.checked)}
           />
         }

@@ -30,7 +30,7 @@ export const App = () => {
         <CardActions>
           <LoadingButton
             variant="contained"
-            color="success"
+            color="primary"
             fullWidth={true}
             size="large"
             loading={false}

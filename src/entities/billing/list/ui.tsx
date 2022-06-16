@@ -1,10 +1,11 @@
 import { useId } from 'react';
 import { Divider, Skeleton, Stack, Typography } from '@mui/material';
+import { grey } from '@mui/material/colors';
 import { useStore } from 'effector-react';
 
 import { viewerModel } from '@app/entities/viewer';
 
-import { priceConvert } from './lib';
+import { convert } from './lib';
 import { $billingList, TBillingEntity } from './model';
 
 export const BillingBlank = () => {
@@ -47,16 +48,23 @@ export const BillingEntity = ({
           {loading ? <Skeleton /> : name}
         </Typography>
         <Typography variant="subtitle1" minWidth={100} textAlign="start">
-          {loading ? <Skeleton /> : `${quantity} ${price_unit} for $${priceConvert(price)} per ${period}`}
+          {loading ? <Skeleton /> : `${quantity} ${price_unit} for $${convert(price)} per ${period}`}
         </Typography>
       </Stack>
       <Stack justifyContent="space-between" alignItems="end">
-        <Typography variant="body2" minWidth={80} textAlign="end" py={0.75}>
-          {loading ? <Skeleton /> : isTrial ? `= $${priceConvert(price * quantity)}` : ''}
+        <Typography
+          variant="body2"
+          minWidth={80}
+          textAlign="end"
+          py={0.75}
+          color={isTrial ? grey[400] : 'default'}
+          sx={{ textDecorationLine: 'line-through', textDecorationThickness: 2 }}
+        >
+          {loading ? <Skeleton /> : isTrial ? `$${convert(price * quantity)}` : ''}
         </Typography>
 
         <Typography variant="body1" minWidth={60} textAlign="end" py={0.25}>
-          {loading ? <Skeleton /> : isTrial ? '= $0' : `= $${priceConvert(price * quantity)}`}
+          {loading ? <Skeleton /> : isTrial ? '= $0' : `= $${convert(price * quantity)}`}
         </Typography>
       </Stack>
     </Stack>

@@ -13,7 +13,7 @@ export const billingListUpdated = createEvent();
 
 export const $billingList = createStore<TBillingEntity[]>([
   {
-    code: 'gslb.domain',
+    code: 'service.domain',
     name: 'Domains',
     quantity: 2,
     price: 1233,
@@ -21,7 +21,7 @@ export const $billingList = createStore<TBillingEntity[]>([
     period: 'hour',
   },
   {
-    code: 'gslb.host',
+    code: 'service.host',
     name: 'Servers',
     quantity: 3,
     price: 1111,
@@ -29,7 +29,7 @@ export const $billingList = createStore<TBillingEntity[]>([
     period: 'hour',
   },
   {
-    code: 'gslb.forwarder',
+    code: 'service.forwarder',
     name: 'Forwarders',
     quantity: 8,
     price: 1565,

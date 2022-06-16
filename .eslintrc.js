@@ -43,5 +43,6 @@ module.exports = {
     'import/newline-after-import': 'error',
     'import/no-duplicates': 'error',
     'react/prop-types': 0,
+    '@typescript-eslint/ban-ts-comment': 0,
   },
 };

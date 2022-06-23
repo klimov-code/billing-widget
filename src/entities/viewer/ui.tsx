@@ -50,7 +50,7 @@ const CustomSwitch = styled((props: SwitchProps) => <Switch disableRipple {...pr
   },
 }));
 
-export const TrialBanner = () => {
+export const TrialSwitch = () => {
   const isTrial = useStore($isTrial);
 
   return (

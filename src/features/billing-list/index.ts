@@ -1,2 +1,2 @@
-export * as billingListModel from './model';
+export * as billingModel from './model';
 export * from './ui';

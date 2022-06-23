@@ -3,11 +3,7 @@ module.exports = (api) => {
 
   api.cache(isDev);
 
-  const plugins = [
-    isDev
-      ? ['effector-logger/babel-plugin', { effector: { factories: ['createDeleteModal'] } }]
-      : ['effector/babel-plugin', { factories: ['createDeleteModal'] }],
-  ];
+  const plugins = [isDev ? ['effector-logger/babel-plugin'] : ['effector/babel-plugin']];
 
   return {
     plugins,

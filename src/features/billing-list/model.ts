@@ -13,7 +13,7 @@ export const billingListUpdated = createEvent();
 
 export const $billingList = createStore<TBillingEntity[]>([
   {
-    code: 'service.domain',
+    code: 'product.domain',
     name: 'Domains',
     quantity: 2,
     price: 1233,
@@ -21,7 +21,7 @@ export const $billingList = createStore<TBillingEntity[]>([
     period: 'hour',
   },
   {
-    code: 'service.host',
+    code: 'product.host',
     name: 'Servers',
     quantity: 3,
     price: 1111,
@@ -29,11 +29,12 @@ export const $billingList = createStore<TBillingEntity[]>([
     period: 'hour',
   },
   {
-    code: 'service.forwarder',
+    code: 'product.forwarder',
     name: 'Forwarders',
     quantity: 8,
-    price: 1565,
+    price: 65,
     price_unit: 'pcs',
     period: 'hour',
   },
 ]);
+export const $billingCount = $billingList.map((list) => list.length);

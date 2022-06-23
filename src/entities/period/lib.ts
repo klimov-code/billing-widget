@@ -24,7 +24,7 @@ class Node<P> {
   }
 }
 
-class LinkedList<T> {
+export class LinkedList<T> {
   #tail: Node<T> | null | undefined;
 
   constructor(data: T[]) {
@@ -86,5 +86,3 @@ class LinkedList<T> {
     return count;
   }
 }
-
-export { LinkedList };

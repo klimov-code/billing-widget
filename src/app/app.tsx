@@ -2,14 +2,15 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import { LoadingButton } from '@mui/lab';
 import { Card, CardActions, CardContent, CardHeader, Container, Divider, Typography } from '@mui/material';
 
-import { TrialBanner } from '@app/entities/viewer';
+import { PeriodSwitch } from '@app/entities/period';
+import { ResourceList } from '@app/entities/resource';
+import { TrialSwitch } from '@app/entities/viewer';
 import { BillingList } from '@app/features/billing-list';
-import { PeriodSwitch } from '@app/features/period-switch';
 
 export const App = () => {
   return (
-    <Container maxWidth="xs" sx={{ height: '100vh', display: 'flex', alignItems: 'center' }}>
-      <Card sx={{ width: '100%' }}>
+    <Container maxWidth="md" sx={{ height: '100vh', display: 'flex', alignItems: 'start', gap: 4 }}>
+      <Card sx={{ width: '50%' }}>
         <CardHeader
           title={
             <Typography variant="h4" component="h2">
@@ -22,7 +23,7 @@ export const App = () => {
 
           <Divider sx={{ paddingTop: 1.5 }} />
 
-          <TrialBanner />
+          <TrialSwitch />
 
           <PeriodSwitch />
         </CardContent>
@@ -40,6 +41,11 @@ export const App = () => {
             Checkout
           </LoadingButton>
         </CardActions>
+      </Card>
+      <Card sx={{ width: '50%' }}>
+        <CardContent>
+          <ResourceList />
+        </CardContent>
       </Card>
     </Container>
   );

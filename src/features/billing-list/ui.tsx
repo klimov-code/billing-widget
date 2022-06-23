@@ -6,7 +6,7 @@ import { useStore } from 'effector-react';
 import { viewerModel } from '@app/entities/viewer';
 
 import { convert } from './lib';
-import { $billingList, TBillingEntity } from './model';
+import { $billingCount, $billingList, TBillingEntity } from './model';
 
 export const BillingBlank = () => {
   return (
@@ -32,15 +32,14 @@ export const BillingBlank = () => {
 };
 
 export const BillingEntity = ({
-  loading = false,
   name,
   quantity,
   price,
   price_unit,
   period,
-}: TBillingEntity & { loading?: boolean }) => {
-  const isTrial = useStore(viewerModel.$isTrial);
-
+  loading = false,
+  trial = false,
+}: TBillingEntity & { loading?: boolean; trial: viewerModel.Trial }) => {
   return (
     <Stack component="article" direction="row" justifyContent="space-between">
       <Stack justifyContent="space-between" alignItems="start">
@@ -57,14 +56,14 @@ export const BillingEntity = ({
           minWidth={80}
           textAlign="end"
           py={0.75}
-          color={isTrial ? grey[400] : 'default'}
+          color={trial ? grey[400] : 'default'}
           sx={{ textDecorationLine: 'line-through', textDecorationThickness: 2 }}
         >
-          {loading ? <Skeleton /> : isTrial ? `$${convert(price * quantity)}` : ''}
+          {loading ? <Skeleton /> : trial ? `$${convert(price * quantity)}` : ''}
         </Typography>
 
         <Typography variant="body1" minWidth={60} textAlign="end" py={0.25}>
-          {loading ? <Skeleton /> : isTrial ? '= $0' : `= $${convert(price * quantity)}`}
+          {loading ? <Skeleton /> : trial ? '= $0' : `= $${convert(price * quantity)}`}
         </Typography>
       </Stack>
     </Stack>
@@ -72,11 +71,13 @@ export const BillingEntity = ({
 };
 
 export const BillingList = () => {
+  const trial = useStore(viewerModel.$isTrial);
+  const count = useStore($billingCount);
   const list = useStore($billingList);
 
   return (
     <Stack spacing={1.5} divider={<Divider orientation="horizontal" />}>
-      {list.length ? list.map((entity) => <BillingEntity {...entity} key={useId()} />) : <BillingBlank />}
+      {count > 0 ? list.map((entity) => <BillingEntity {...entity} trial={trial} key={useId()} />) : <BillingBlank />}
     </Stack>
   );
 };

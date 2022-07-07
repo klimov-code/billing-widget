@@ -1,16 +1,11 @@
 import { createStore } from 'effector';
 
-export const $cost = createStore({
-  'product.domain': {
-    price: 233,
-    period: 'hour',
-  },
-  'product.server': {
-    price: 111,
-    period: 'hour',
-  },
-  'product.forwarder': {
-    price: 65,
-    period: 'hour',
-  },
+import { Code } from '@app/shared/types/common';
+
+export type Entity = Record<Code, number>;
+
+export const $cost = createStore<Entity>({
+  'product.domain': 233,
+  'product.server': 111,
+  'product.forwarder': 65,
 });

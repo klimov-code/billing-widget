@@ -1,12 +1,11 @@
-import { useId } from 'react';
 import { Divider, Skeleton, Stack, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { useStore } from 'effector-react';
+import { useList, useStore } from 'effector-react';
 
 import { viewerModel } from '@app/entities/viewer';
 
 import { convert } from './lib';
-import { $billingCount, $billingList, TBillingEntity } from './model';
+import { $billingCount, $billingList, $loading, TBillingEntity } from './model';
 
 export const BillingBlank = () => {
   return (
@@ -31,23 +30,22 @@ export const BillingBlank = () => {
   );
 };
 
-export const BillingEntity = ({
-  name,
-  quantity,
-  price,
-  price_unit,
-  period,
-  loading = false,
-  trial = false,
-}: TBillingEntity & { loading?: boolean; trial: viewerModel.Trial }) => {
+export const BillingEntity = (entity: TBillingEntity) => {
+  const trial = useStore(viewerModel.$isTrial);
+  const loading = useStore($loading);
+
   return (
     <Stack component="article" direction="row" justifyContent="space-between">
       <Stack justifyContent="space-between" alignItems="start">
         <Typography variant="h6" component="p" minWidth={140} textAlign="start">
-          {loading ? <Skeleton /> : name}
+          {loading ? <Skeleton /> : entity.name}
         </Typography>
         <Typography variant="subtitle1" minWidth={100} textAlign="start">
-          {loading ? <Skeleton /> : `${quantity} ${price_unit} for $${convert(price)} per ${period}`}
+          {loading ? (
+            <Skeleton />
+          ) : (
+            `${entity?.quantity} ${entity.price_unit} for $${convert(entity.price)} per ${entity.period}`
+          )}
         </Typography>
       </Stack>
       <Stack justifyContent="space-between" alignItems="end">
@@ -57,13 +55,13 @@ export const BillingEntity = ({
           textAlign="end"
           py={0.75}
           color={trial ? grey[400] : 'default'}
-          sx={{ textDecorationLine: 'line-through', textDecorationThickness: 2 }}
+          sx={{ textDecorationLine: 'line-through', textDecorationThickness: loading ? 0 : 2 }}
         >
-          {loading ? <Skeleton /> : trial ? `$${convert(price * quantity)}` : ''}
+          {loading ? <Skeleton /> : trial ? `$${convert(entity.price * entity.quantity)}` : ''}
         </Typography>
 
         <Typography variant="body1" minWidth={60} textAlign="end" py={0.25}>
-          {loading ? <Skeleton /> : trial ? '= $0' : `= $${convert(price * quantity)}`}
+          {loading ? <Skeleton /> : trial ? '= $0' : `= $${convert(entity.price * entity.quantity)}`}
         </Typography>
       </Stack>
     </Stack>
@@ -71,13 +69,14 @@ export const BillingEntity = ({
 };
 
 export const BillingList = () => {
-  const trial = useStore(viewerModel.$isTrial);
   const count = useStore($billingCount);
   const list = useStore($billingList);
 
+  // eslint-disable-next-line
+  console.log(list);
   return (
     <Stack spacing={1.5} divider={<Divider orientation="horizontal" />}>
-      {count > 0 ? list.map((entity) => <BillingEntity {...entity} trial={trial} key={useId()} />) : <BillingBlank />}
+      {count > 0 ? list.map((entity, index) => <BillingEntity key={index} {...entity} />) : <BillingBlank />}
     </Stack>
   );
 };

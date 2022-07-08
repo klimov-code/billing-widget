@@ -4,7 +4,6 @@ import { useStore } from 'effector-react';
 
 import { viewerModel } from '@app/entities/viewer';
 import { convertToString } from '@app/shared/lib/convertToString';
-import { TimeFactor } from '@app/shared/types/common';
 
 import { $billingCount, $billingList, $loading, Entity } from './model';
 
@@ -58,23 +57,11 @@ export const BillingEntity = (entity: Entity) => {
           color={trial ? grey[400] : 'default'}
           sx={{ textDecorationLine: 'line-through', textDecorationThickness: loading ? 0 : 2 }}
         >
-          {loading ? (
-            <Skeleton />
-          ) : trial ? (
-            `$${convertToString(entity.price * entity.quantity * TimeFactor[entity.period])}`
-          ) : (
-            ''
-          )}
+          {loading ? <Skeleton /> : trial ? `$${convertToString(entity.total)}` : ''}
         </Typography>
 
         <Typography variant="body1" minWidth={60} textAlign="end" py={0.25}>
-          {loading ? (
-            <Skeleton />
-          ) : trial ? (
-            '= $0'
-          ) : (
-            `= $${convertToString(entity.price * entity.quantity * TimeFactor[entity.period])}`
-          )}
+          {loading ? <Skeleton /> : trial ? '= $0' : `= $${convertToString(entity.total)}`}
         </Typography>
       </Stack>
     </Stack>

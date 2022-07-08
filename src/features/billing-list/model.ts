@@ -4,7 +4,7 @@ import { costModel } from '@app/entities/cost';
 import { periodModel } from '@app/entities/period';
 import { resourceModel } from '@app/entities/resource';
 import { randomTimeout } from '@app/shared/lib/randomTimeout';
-import { Code } from '@app/shared/types/common';
+import { Code, TimeFactor } from '@app/shared/types/common';
 
 export type Entity = {
   code: Code;
@@ -13,6 +13,7 @@ export type Entity = {
   price: number;
   price_unit: string;
   period: periodModel.Entity;
+  total: number;
 };
 
 export const billingListUpdated = createEvent<[resourceModel.Entity, costModel.Entity, periodModel.Entity]>();
@@ -28,6 +29,7 @@ const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, p
           price: cost[Code.domain],
           price_unit: 'pcs',
           period: period,
+          total: cost[Code.domain] * resource[Code.domain] * TimeFactor[period],
         },
         {
           code: Code.server,
@@ -36,6 +38,7 @@ const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, p
           price: cost[Code.server],
           price_unit: 'pcs',
           period: period,
+          total: cost[Code.server] * resource[Code.server] * TimeFactor[period],
         },
         {
           code: Code.forwarder,
@@ -44,6 +47,7 @@ const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, p
           price: cost[Code.forwarder],
           price_unit: 'pcs',
           period: period,
+          total: cost[Code.forwarder] * resource[Code.forwarder] * TimeFactor[period],
         },
       ];
 

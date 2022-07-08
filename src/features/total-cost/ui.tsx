@@ -11,7 +11,7 @@ export const TotalCost = () => {
 
   return (
     <Typography variant="h4" component="p" minWidth={140} textAlign="start">
-      {loading ? <Skeleton /> : convertToString(totalCost)}
+      {loading ? <Skeleton /> : `$${convertToString(totalCost)}`}
     </Typography>
   );
 };

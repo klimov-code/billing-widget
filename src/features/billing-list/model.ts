@@ -3,11 +3,10 @@ import { createEffect, createEvent, createStore, sample } from 'effector';
 import { costModel } from '@app/entities/cost';
 import { periodModel } from '@app/entities/period';
 import { resourceModel } from '@app/entities/resource';
+import { randomTimeout } from '@app/shared/lib/randomTimeout';
 import { Code } from '@app/shared/types/common';
 
-import { random } from './lib';
-
-export type TBillingEntity = {
+export type Entity = {
   code: Code;
   name: string;
   quantity: number;
@@ -18,9 +17,9 @@ export type TBillingEntity = {
 
 export const billingListUpdated = createEvent<[resourceModel.Entity, costModel.Entity, periodModel.Entity]>();
 
-const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, periodModel.Entity], TBillingEntity[]>(
-  ([resource, cost, period]) => {
-    return new Promise<TBillingEntity[]>((resolve) => {
+const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, periodModel.Entity], Entity[]>(
+  ([resource, cost, period]) =>
+    new Promise<Entity[]>((resolve) => {
       const list = [
         {
           code: Code.domain,
@@ -48,12 +47,11 @@ const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, p
         },
       ];
 
-      return setTimeout(() => resolve(list), random(100, 200));
-    });
-  },
+      return setTimeout(() => resolve(list), randomTimeout(100, 200));
+    }),
 );
 
-export const $billingList = createStore<TBillingEntity[]>([]);
+export const $billingList = createStore<Entity[]>([]);
 export const $billingCount = $billingList.map((list) => list.length);
 export const $loading = getBillingListFx.pending;
 

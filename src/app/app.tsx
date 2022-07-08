@@ -6,6 +6,7 @@ import { PeriodSwitch } from '@app/entities/period';
 import { ResourceList } from '@app/entities/resource';
 import { TrialSwitch } from '@app/entities/viewer';
 import { BillingList } from '@app/features/billing-list';
+import { TotalCost } from '@app/features/total-cost';
 
 export const App = () => {
   return (
@@ -26,6 +27,8 @@ export const App = () => {
           <TrialSwitch />
 
           <PeriodSwitch />
+
+          <TotalCost />
         </CardContent>
 
         <CardActions>

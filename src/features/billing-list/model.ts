@@ -26,7 +26,7 @@ const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, p
           code: Code.domain,
           name: 'Domains',
           quantity: resource[Code.domain],
-          price: cost[Code.domain],
+          price: cost[Code.domain] * TimeFactor[period],
           price_unit: 'pcs',
           period: period,
           total: cost[Code.domain] * resource[Code.domain] * TimeFactor[period],
@@ -35,7 +35,7 @@ const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, p
           code: Code.server,
           name: 'Servers',
           quantity: resource[Code.server],
-          price: cost[Code.server],
+          price: cost[Code.server] * TimeFactor[period],
           price_unit: 'pcs',
           period: period,
           total: cost[Code.server] * resource[Code.server] * TimeFactor[period],
@@ -44,7 +44,7 @@ const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, p
           code: Code.forwarder,
           name: 'Forwarders',
           quantity: resource[Code.forwarder],
-          price: cost[Code.forwarder],
+          price: cost[Code.forwarder] * TimeFactor[period],
           price_unit: 'pcs',
           period: period,
           total: cost[Code.forwarder] * resource[Code.forwarder] * TimeFactor[period],
@@ -60,18 +60,18 @@ export const $billingCount = $billingList.map((list) => list.length);
 export const $loading = getBillingListFx.pending;
 
 sample({
-  // @ts-ignore
   clock: resourceModel.$resource,
   source: [costModel.$cost, periodModel.$period],
-  fn: ([cost, period], resource) => [resource, cost, period],
+  fn: ([cost, period], resource) =>
+    [resource, cost, period] as [resourceModel.Entity, costModel.Entity, periodModel.Entity],
   target: billingListUpdated,
 });
 
 sample({
-  // @ts-ignore
   clock: periodModel.$period,
   source: [costModel.$cost, resourceModel.$resource],
-  fn: ([cost, resource], period) => [resource, cost, period],
+  fn: ([cost, resource], period) =>
+    [resource, cost, period] as [resourceModel.Entity, costModel.Entity, periodModel.Entity],
   target: billingListUpdated,
 });
 

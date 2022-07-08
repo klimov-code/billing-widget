@@ -5,7 +5,7 @@ import { Code } from '@app/shared/types/common';
 export type Entity = Record<Code, number>;
 
 export const $cost = createStore<Entity>({
-  'product.domain': 23,
-  'product.server': 11,
-  'product.forwarder': 16,
+  'product.domain': 2.3,
+  'product.server': 1.1,
+  'product.forwarder': 1.6,
 });

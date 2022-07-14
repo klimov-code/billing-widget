@@ -1,11 +1,11 @@
 import { Divider, Skeleton, Stack, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { useStore } from 'effector-react';
+import { useList, useStore } from 'effector-react';
 
 import { viewerModel } from '@app/entities/viewer';
 import { convertToString } from '@app/shared/lib/convertToString';
 
-import { $billingCount, $billingList, $loading, Entity } from './model';
+import { $billingList, $loading, Entity } from './model';
 
 export const BillingBlank = () => {
   return (
@@ -69,12 +69,15 @@ export const BillingEntity = (entity: Entity) => {
 };
 
 export const BillingList = () => {
-  const count = useStore($billingCount);
-  const list = useStore($billingList);
+  const list = useList($billingList, {
+    fn: (entity, index) => <BillingEntity key={index} {...entity} />,
+    getKey: (entity) => entity.code,
+    placeholder: <BillingBlank />,
+  });
 
   return (
     <Stack spacing={1.5} divider={<Divider orientation="horizontal" />}>
-      {count > 0 ? list.map((entity, index) => <BillingEntity key={index} {...entity} />) : <BillingBlank />}
+      {list}
     </Stack>
   );
 };

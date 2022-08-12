@@ -4,7 +4,7 @@ import { costModel } from '@app/entities/cost';
 import { periodModel } from '@app/entities/period';
 import { resourceModel } from '@app/entities/resource';
 import { randomTimeout } from '@app/shared/lib/randomTimeout';
-import { Code, TimeFactor } from '@app/shared/types/common';
+import { Code, TimeFactor } from '#types/common';
 
 export type Entity = {
   code: Code;
@@ -51,7 +51,7 @@ const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, p
         },
       ];
 
-      return setTimeout(() => resolve(list), randomTimeout(100, 200));
+      return setTimeout(() => resolve(list), randomTimeout(300, 600));
     }),
 );
 

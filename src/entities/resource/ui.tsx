@@ -18,7 +18,6 @@ export const ResourceEntity = ({
       <Typography gutterBottom={true}>{title}</Typography>
       <Slider
         value={value}
-        defaultValue={4}
         min={0}
         step={1}
         max={20}

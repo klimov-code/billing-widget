@@ -7,5 +7,6 @@ export enum Code {
 export enum TimeFactor {
   hour = 1,
   day = 24,
+  // week = 168,
   month = 720,
 }

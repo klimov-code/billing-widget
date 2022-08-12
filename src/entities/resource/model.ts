@@ -17,6 +17,6 @@ export const $resource = createStore<Entity>({
   [Code.server]: 2,
   [Code.forwarder]: 4,
 })
-  .on(domainChanged, (resource, domain) => ({ ...resource, [Code.domain]: domain }))
-  .on(serverChanged, (resource, server) => ({ ...resource, [Code.server]: server }))
-  .on(forwarderChanged, (resource, forwarder) => ({ ...resource, [Code.forwarder]: forwarder }));
+  .on($domain, (resource, domain) => ({ ...resource, [Code.domain]: domain }))
+  .on($server, (resource, server) => ({ ...resource, [Code.server]: server }))
+  .on($forwarder, (resource, forwarder) => ({ ...resource, [Code.forwarder]: forwarder }));

@@ -5,7 +5,9 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
+  const isDev = mode === 'development';
+
   return {
     resolve: {
       alias: [
@@ -25,12 +27,16 @@ export default defineConfig(() => {
         extensions: ['.js', '.ts'],
         babelHelpers: 'bundled',
       }),
-      react(),
+      react({
+        babel: {
+          plugins: [isDev ? ['effector-logger/babel-plugin'] : ['effector/babel-plugin']],
+        },
+      }),
       svgr(),
       eslint(),
     ],
     server: {
-      port: 8081,
+      port: 1337,
       cors: true,
       strictPort: true,
     },

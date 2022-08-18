@@ -1,5 +1,6 @@
-name: Build and Deploy
-on: [push]
+name: Build and Push
+on:
+  push: main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -7,23 +8,24 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2.2.2
+      - name: Init pnpm 🔧
+        uses: pnpm/action-setup@v2.2.2
         with:
           version: 7
 
-      - name: Use Node.JS
+      - name: Use Node.JS 🛠
         uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: 'pnpm'
 
-      - name: Install dependencies
+      - name: Install deps 🧱
         run: pnpm install
 
-      - name: Build project
+      - name: Build project 🏗
         run: pnpm build
 
-      - name: Deploy 🚀
+      - name: Push to Pages branch 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist

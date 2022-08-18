@@ -42,7 +42,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       rollupOptions: {
-        input: resolve(__dirname, 'src/index.ts'),
+        input: resolve(__dirname, 'index.html'),
         output: {
           format: 'es',
         },

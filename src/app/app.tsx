@@ -8,11 +8,11 @@ export const App = () => {
   return (
     <Container maxWidth="sm">
       <Grid container spacing={4} justifyContent="space-around">
-        <Grid sm={9}>
+        <Grid sm={8}>
           <BillingWidget />
         </Grid>
 
-        <Grid sm={9}>
+        <Grid sm={8}>
           <AdminWidget />
         </Grid>
       </Grid>

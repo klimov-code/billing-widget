@@ -1,10 +1,8 @@
-name: Deploy static content to Pages
+name: Deploy
 
 on:
   push:
     branches: ['gh-pages']
-
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -16,7 +14,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages

@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => {
   const isDev = mode === 'development';
 
   return {
+    base: '/billing-widget/',
     resolve: {
       alias: [
         {

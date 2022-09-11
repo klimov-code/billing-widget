@@ -37,6 +37,7 @@ jobs:
           if-no-files-found: error
 
   deploy:
+    needs: build
     permissions:
       contents: read
       pages: write

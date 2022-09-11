@@ -30,11 +30,9 @@ jobs:
         run: pnpm build
 
       - name: Upload build artifact 🏗
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: widget
           path: dist
-          if-no-files-found: error
 
   deploy:
     needs: build
@@ -56,5 +54,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-        with:
-          artifact_name: widget

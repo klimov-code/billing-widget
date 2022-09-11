@@ -53,11 +53,8 @@ jobs:
       - name: Setup Pages 📑
         uses: actions/configure-pages@v1
 
-      - name: Download build artifact 🏗
-        uses: actions/download-artifact@v3
-        with:
-          name: widget
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+        with:
+          artifact_name: widget

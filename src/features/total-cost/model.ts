@@ -18,7 +18,7 @@ const getTotalCostFx = createEffect<[resourceModel.Entity, costModel.Entity, per
         resource[Code.server] * cost[Code.server] * TimeFactor[period] +
         resource[Code.forwarder] * cost[Code.forwarder] * TimeFactor[period];
 
-      return setTimeout(() => resolve(total), randomTimeout(100, 200));
+      return setTimeout(() => resolve(total), randomTimeout(300, 600));
     }),
 );
 

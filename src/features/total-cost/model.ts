@@ -4,7 +4,7 @@ import { costModel } from '@app/entities/cost';
 import { periodModel } from '@app/entities/period';
 import { resourceModel } from '@app/entities/resource';
 import { randomTimeout } from '@app/shared/lib/randomTimeout';
-import { Code, TimeFactor } from '@app/shared/types/common';
+import { Code, TimeFactor } from '#types/common';
 
 export type Entity = number;
 

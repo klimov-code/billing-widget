@@ -3,7 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "strict": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "isolatedModules": true,
     "importHelpers": true,
     "moduleResolution": "node",
@@ -17,7 +17,7 @@
       "@app/*": ["./src/*"],
       "#types/*": ["./src/shared/types/*"]
     },
-    "types": ["vite/client", "@honkhonk/vite-plugin-svgr/client"],
+    "types": ["vite/client", "@honkhonk/vite-plugin-svgr/client", "vitest/globals"],
     "lib": [
       "esnext",
       "dom",

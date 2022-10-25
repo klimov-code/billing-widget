@@ -2,7 +2,7 @@ import svgr from '@honkhonk/vite-plugin-svgr';
 import babel from '@rollup/plugin-babel';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
-import { defineConfig } from 'vite';
+import { defineConfig, UserConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
 
 export default defineConfig(({ mode }) => {
@@ -11,16 +11,21 @@ export default defineConfig(({ mode }) => {
   return {
     base: '/billing-widget/',
     resolve: {
-      alias: [
-        {
-          find: '@app',
-          replacement: resolve(__dirname, 'src'),
-        },
-        {
-          find: '#types',
-          replacement: resolve(__dirname, 'src/shared/types'),
-        },
-      ],
+      alias: {
+        '@app': resolve(__dirname, 'src'),
+        '#types': resolve(__dirname, 'src/shared/types'),
+      },
+    },
+    test: {
+      globals: true,
+      environment: 'happy-dom',
+      coverage: {
+        clean: true,
+        all: true,
+        include: ['src'],
+        exclude: ['src/**/*.{test,spec}.{ts,js,tsx,jsx}', 'src/**/index.{ts,js}'],
+      },
+      include: ['src/**/*.{test,spec}.{ts,js,tsx,jsx}'],
     },
     plugins: [
       babel({
@@ -49,5 +54,5 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-  };
+  } as UserConfig;
 });

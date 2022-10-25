@@ -16,9 +16,9 @@ export type Entity = {
   total: number;
 };
 
-export const billingListUpdated = createEvent<[resourceModel.Entity, costModel.Entity, periodModel.Entity]>();
+export const billingListUpdated = createEvent();
 
-const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, periodModel.Entity], Entity[]>(
+export const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, periodModel.Entity], Entity[]>(
   ([resource, cost, period]) =>
     new Promise<Entity[]>((resolve) => {
       const list = [
@@ -76,6 +76,7 @@ sample({
 });
 
 sample({
+  // @ts-ignore
   clock: billingListUpdated,
   target: getBillingListFx,
 });

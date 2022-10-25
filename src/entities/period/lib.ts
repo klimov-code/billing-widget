@@ -1,6 +1,6 @@
 class Node<P> {
   #data: P;
-  #next: Node<P> | null | undefined;
+  #next: Node<P> | null;
 
   constructor(data: P) {
     this.#data = data;
@@ -25,7 +25,7 @@ class Node<P> {
 }
 
 export class LinkedList<T> {
-  #tail: Node<T> | null | undefined;
+  #tail: Node<T> | null;
 
   constructor(data: T[]) {
     this.#tail = null;
@@ -40,8 +40,7 @@ export class LinkedList<T> {
       if (this.#tail === null) {
         newNode.next = newNode;
       } else {
-        newNode.next = this.#tail?.next;
-        // @ts-ignore
+        newNode.next = this.#tail.next;
         this.#tail.next = newNode;
       }
       this.#tail = newNode;
@@ -50,7 +49,7 @@ export class LinkedList<T> {
 
   get(index: number) {
     if (index > -1 && this.#tail !== null) {
-      let current = this.#tail?.next;
+      let current = this.#tail.next;
       let i = 0;
 
       do {
@@ -58,9 +57,9 @@ export class LinkedList<T> {
           return current;
         }
 
-        current = current?.next;
+        current = current?.next ?? null;
         i++;
-      } while (current !== this.#tail?.next && i <= index);
+      } while (current !== this.#tail.next && i <= index);
     }
 
     return undefined;
@@ -75,13 +74,13 @@ export class LinkedList<T> {
       return 0;
     }
 
-    let current = this.#tail?.next;
+    let current = this.#tail.next;
     let count = 0;
 
     do {
       count++;
-      current = current?.next;
-    } while (current !== this.#tail?.next);
+      current = current?.next ?? null;
+    } while (current !== this.#tail.next);
 
     return count;
   }

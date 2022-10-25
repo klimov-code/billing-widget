@@ -1,6 +1,6 @@
 import { createStore } from 'effector';
 
-import { Code } from '@app/shared/types/common';
+import { Code } from '#types/common';
 
 export type Entity = Record<Code, number>;
 

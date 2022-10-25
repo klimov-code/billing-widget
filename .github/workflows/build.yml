@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Init pnpm 🔧
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2.2.4
         with:
           version: 7
 
@@ -24,7 +24,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install deps 🧱
-        run: pnpm install
+        run: pnpm i
 
       - name: Build project 🏗
         run: pnpm build

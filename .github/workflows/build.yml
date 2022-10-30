@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -20,7 +20,31 @@ jobs:
       - name: Use Node.JS 🛠
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install deps 🧱
+        run: pnpm i
+
+      - name: Test project 🧪
+        run: pnpm test:run
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Init pnpm 🔧
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+
+      - name: Use Node.JS 🛠
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
           cache: 'pnpm'
 
       - name: Install deps 🧱

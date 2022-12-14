@@ -5,7 +5,9 @@ import swc from 'unplugin-swc';
 import { defineConfig, UserConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
+  const isDev = mode === 'development';
+
   return {
     base: '/billing-widget/',
     resolve: {
@@ -27,21 +29,23 @@ export default defineConfig(() => {
     },
     plugins: [
       react(),
-      swc.vite({
-        jsc: {
-          target: 'es2022',
-          experimental: {
-            plugins: [
-              [
-                '@effector/swc-plugin',
-                {
-                  addLoc: true,
-                },
-              ],
-            ],
-          },
-        },
-      }),
+      isDev
+        ? swc.vite({
+            jsc: {
+              target: 'es2022',
+              experimental: {
+                plugins: [
+                  [
+                    '@effector/swc-plugin',
+                    {
+                      addLoc: true,
+                    },
+                  ],
+                ],
+              },
+            },
+          })
+        : null,
       svgr(),
       eslint(),
     ],
@@ -55,6 +59,14 @@ export default defineConfig(() => {
         input: resolve(__dirname, 'index.html'),
         output: {
           format: 'es',
+          /* entryFileNames: 'js/app.js',
+          chunkFileNames: 'js/[name].[hash].js',
+          assetFileNames: 'assets/[name].[hash].[ext]',
+          manualChunks: (id) => {
+            if (id.includes('@mui') || id.includes('@emotion')) return 'mui';
+            if (id.includes('react')) return 'react';
+            return 'vendor';
+          }, */
         },
       },
     },

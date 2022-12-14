@@ -16,9 +16,11 @@ export type Entity = {
   total: number;
 };
 
-export const billingListUpdated = createEvent();
+export type BillingInfo = [resourceModel.Entity, costModel.Entity, periodModel.Entity];
 
-export const getBillingListFx = createEffect<[resourceModel.Entity, costModel.Entity, periodModel.Entity], Entity[]>(
+export const billingListUpdated = createEvent<BillingInfo>();
+
+export const getBillingListFx = createEffect<BillingInfo, Entity[]>(
   ([resource, cost, period]) =>
     new Promise<Entity[]>((resolve) => {
       const list = [
@@ -62,21 +64,18 @@ export const $loading = getBillingListFx.pending;
 sample({
   clock: resourceModel.$resource,
   source: [costModel.$cost, periodModel.$period],
-  fn: ([cost, period], resource) =>
-    [resource, cost, period] as [resourceModel.Entity, costModel.Entity, periodModel.Entity],
+  fn: ([cost, period], resource) => [resource, cost, period] as BillingInfo,
   target: billingListUpdated,
 });
 
 sample({
   clock: periodModel.$period,
   source: [costModel.$cost, resourceModel.$resource],
-  fn: ([cost, resource], period) =>
-    [resource, cost, period] as [resourceModel.Entity, costModel.Entity, periodModel.Entity],
+  fn: ([cost, resource], period) => [resource, cost, period] as BillingInfo,
   target: billingListUpdated,
 });
 
 sample({
-  // @ts-ignore
   clock: billingListUpdated,
   target: getBillingListFx,
 });

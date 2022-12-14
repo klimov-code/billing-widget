@@ -54,7 +54,6 @@ specifiers:
   vitest: ^0.25.8
 
 dependencies:
-  '@babel/core': 7.20.5
   '@emotion/react': 11.10.5_xl5my4wapvq2ctl7qwehtbgorq
   '@emotion/styled': 11.10.5_3djhvnr4jirfvebjqpipo7gthy
   '@mui/icons-material': 5.11.0_2q3lgv2yds5td5xef72rojpyny
@@ -68,6 +67,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
 
 devDependencies:
+  '@babel/core': 7.20.5
   '@effector/swc-plugin': 0.0.7
   '@honkhonk/vite-plugin-svgr': 1.1.0_vite@4.0.1
   '@swc/core': 1.3.22

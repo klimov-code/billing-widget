@@ -3,6 +3,11 @@ module.exports = {
   env: {
     browser: true,
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:effector/recommended',

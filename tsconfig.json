@@ -17,21 +17,9 @@
       "@app/*": ["./src/*"],
       "#types/*": ["./src/shared/types/*"]
     },
-    "types": ["vite/client", "@honkhonk/vite-plugin-svgr/client", "vitest/globals"],
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "types": ["vite/client", "vitest/globals"],
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "include": [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules"]
 }

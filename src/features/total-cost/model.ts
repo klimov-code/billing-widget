@@ -4,19 +4,21 @@ import { costModel } from '@app/entities/cost';
 import { periodModel } from '@app/entities/period';
 import { resourceModel } from '@app/entities/resource';
 import { randomTimeout } from '@app/shared/lib/randomTimeout';
-import { Code, TimeFactor } from '#types/common';
+import { timeFactor } from '@app/shared/lib/timeFactor';
+import { Code } from '#types/common';
 
 export type Entity = number;
+export type TotalCostInfo = [resourceModel.Entity, costModel.Entity, periodModel.Entity];
 
-export const totalCostUpdated = createEvent<[resourceModel.Entity, costModel.Entity, periodModel.Entity]>();
+export const totalCostUpdated = createEvent<TotalCostInfo>();
 
-const getTotalCostFx = createEffect<[resourceModel.Entity, costModel.Entity, periodModel.Entity], Entity>(
+const getTotalCostFx = createEffect<TotalCostInfo, Entity>(
   ([resource, cost, period]) =>
     new Promise<Entity>((resolve) => {
       const total =
-        resource[Code.domain] * cost[Code.domain] * TimeFactor[period] +
-        resource[Code.server] * cost[Code.server] * TimeFactor[period] +
-        resource[Code.forwarder] * cost[Code.forwarder] * TimeFactor[period];
+        resource[Code.domain] * cost[Code.domain] * timeFactor[period] +
+        resource[Code.server] * cost[Code.server] * timeFactor[period] +
+        resource[Code.forwarder] * cost[Code.forwarder] * timeFactor[period];
 
       return setTimeout(() => resolve(total), randomTimeout(300, 600));
     }),
@@ -28,16 +30,14 @@ export const $loading = getTotalCostFx.pending;
 sample({
   clock: resourceModel.$resource,
   source: [costModel.$cost, periodModel.$period],
-  fn: ([cost, period], resource) =>
-    [resource, cost, period] as [resourceModel.Entity, costModel.Entity, periodModel.Entity],
+  fn: ([cost, period], resource) => [resource, cost, period] as TotalCostInfo,
   target: totalCostUpdated,
 });
 
 sample({
   clock: periodModel.$period,
   source: [costModel.$cost, resourceModel.$resource],
-  fn: ([cost, resource], period) =>
-    [resource, cost, period] as [resourceModel.Entity, costModel.Entity, periodModel.Entity],
+  fn: ([cost, resource], period) => [resource, cost, period] as TotalCostInfo,
   target: totalCostUpdated,
 });
 

@@ -1,10 +1,9 @@
+import { Code } from '#types/common';
 import { allSettled, fork } from 'effector';
 import { describe, it } from 'vitest';
 
-import { timeFactor } from '@app/shared/lib/timeFactor';
-import { Code } from '#types/common';
-
 import { $totalCost, totalCostUpdated } from './model';
+import { timeFactor } from '@app/shared/lib/timeFactor';
 
 describe('total-cost model', () => {
   it('updates total cost', async () => {

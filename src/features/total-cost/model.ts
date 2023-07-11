@@ -1,3 +1,4 @@
+import { Code } from '#types/common';
 import { createEffect, createEvent, createStore, sample } from 'effector';
 
 import { costModel } from '@app/entities/cost';
@@ -5,7 +6,6 @@ import { periodModel } from '@app/entities/period';
 import { resourceModel } from '@app/entities/resource';
 import { randomTimeout } from '@app/shared/lib/randomTimeout';
 import { timeFactor } from '@app/shared/lib/timeFactor';
-import { Code } from '#types/common';
 
 export type Entity = number;
 export type TotalCostInfo = [resourceModel.Entity, costModel.Entity, periodModel.Entity];

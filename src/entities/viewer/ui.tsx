@@ -56,24 +56,24 @@ export const TrialSwitch = () => {
   return (
     <Box sx={{ py: 2 }}>
       <FormControlLabel
-        sx={{ mx: 0, display: 'flex', justifyContent: 'space-between' }}
         control={
           <CustomSwitch
-            sx={{ '& .MuiSvgIcon-root': { fontSize: 36 } }}
-            color="primary"
             checked={isTrial}
+            color="primary"
             onChange={(event) => trialUpdated(event.target.checked)}
+            sx={{ '& .MuiSvgIcon-root': { fontSize: 36 } }}
           />
         }
         label={
           <Box sx={{ display: 'flex', flexDirection: 'column', userSelect: 'none' }}>
-            <Typography variant="h6" component="p">
+            <Typography component="p" variant="h6">
               7 days trial
             </Typography>
             <Typography variant="subtitle1">Free</Typography>
           </Box>
         }
         labelPlacement="start"
+        sx={{ mx: 0, display: 'flex', justifyContent: 'space-between' }}
       />
     </Box>
   );

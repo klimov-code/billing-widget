@@ -33,18 +33,8 @@ export class LinkedList<T> {
     this.insert(data);
   }
 
-  insert(data: T[]) {
-    for (const node of data) {
-      const newNode = new Node(node);
-
-      if (this.#tail === null) {
-        newNode.next = newNode;
-      } else {
-        newNode.next = this.#tail.next;
-        this.#tail.next = newNode;
-      }
-      this.#tail = newNode;
-    }
+  clear() {
+    this.#tail = null;
   }
 
   get(index: number) {
@@ -65,8 +55,18 @@ export class LinkedList<T> {
     return undefined;
   }
 
-  clear() {
-    this.#tail = null;
+  insert(data: T[]) {
+    for (const node of data) {
+      const newNode = new Node(node);
+
+      if (this.#tail === null) {
+        newNode.next = newNode;
+      } else {
+        newNode.next = this.#tail.next;
+        this.#tail.next = newNode;
+      }
+      this.#tail = newNode;
+    }
   }
 
   get size() {

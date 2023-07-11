@@ -1,10 +1,9 @@
+import { Code } from '#types/common';
 import { allSettled, fork } from 'effector';
 import { describe, it } from 'vitest';
 
-import { timeFactor } from '@app/shared/lib/timeFactor';
-import { Code } from '#types/common';
-
 import { $billingCount, $billingList, billingListUpdated, Entity } from './model';
+import { timeFactor } from '@app/shared/lib/timeFactor';
 
 describe('billing-list model', () => {
   it('updates billing list', async () => {

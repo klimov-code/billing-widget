@@ -15,7 +15,7 @@ export const BillingWidget = () => {
     <Card>
       <CardHeader
         title={
-          <Typography variant="h4" component="h2">
+          <Typography component="h2" variant="h4">
             Billing Widget
           </Typography>
         }
@@ -34,13 +34,13 @@ export const BillingWidget = () => {
 
       <CardActions>
         <LoadingButton
-          variant="contained"
           color="primary"
           fullWidth={true}
-          size="large"
           loading={loading}
           loadingPosition="start"
+          size="large"
           startIcon={<PaymentIcon fontSize="inherit" />}
+          variant="contained"
         >
           Checkout
         </LoadingButton>

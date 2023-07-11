@@ -7,7 +7,7 @@ import { BillingWidget } from '@app/widgets/billing';
 export const App = () => {
   return (
     <Container maxWidth="sm">
-      <Grid container spacing={4} justifyContent="space-around">
+      <Grid container justifyContent="space-around" spacing={4}>
         <Grid sm={8}>
           <BillingWidget />
         </Grid>

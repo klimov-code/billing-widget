@@ -7,13 +7,13 @@ export const PeriodSwitch = () => {
   const period = useStore($period);
 
   return (
-    <Stack direction="row" spacing={0} alignItems="center">
+    <Stack alignItems="center" direction="row" spacing={0}>
       <Typography variant="body1">Cost per</Typography>
       <Button
-        variant="text"
         color="primary"
-        sx={{ textTransform: 'initial', fontSize: 16, textDecoration: 'underline' }}
         onClick={() => switchClicked()}
+        sx={{ textTransform: 'initial', fontSize: 16, textDecoration: 'underline' }}
+        variant="text"
       >
         {period}
       </Button>

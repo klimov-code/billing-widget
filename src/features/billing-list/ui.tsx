@@ -2,27 +2,26 @@ import { Divider, Skeleton, Stack, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { useList, useStore } from 'effector-react';
 
+import { $billingList, $loading, Entity } from './model';
 import { viewerModel } from '@app/entities/viewer';
 import { convertToString } from '@app/shared/lib/convertToString';
-
-import { $billingList, $loading, Entity } from './model';
 
 export const BillingBlank = () => {
   return (
     <Stack component="article" direction="row" justifyContent="space-between">
       <Stack justifyContent="space-between">
-        <Typography variant="h6" component="p" width={100} textAlign="start">
+        <Typography component="p" textAlign="start" variant="h6" width={100}>
           <Skeleton />
         </Typography>
-        <Typography variant="subtitle1" width={140} textAlign="start">
+        <Typography textAlign="start" variant="subtitle1" width={140}>
           <Skeleton />
         </Typography>
       </Stack>
       <Stack justifyContent="space-between">
-        <Typography variant="body2" width={60} textAlign="end" py={0.75}>
+        <Typography py={0.75} textAlign="end" variant="body2" width={60}>
           <Skeleton />
         </Typography>
-        <Typography variant="body1" width={60} textAlign="end" py={0.25}>
+        <Typography py={0.25} textAlign="end" variant="body1" width={60}>
           <Skeleton />
         </Typography>
       </Stack>
@@ -36,11 +35,11 @@ export const BillingEntity = (entity: Entity) => {
 
   return (
     <Stack component="article" direction="row" justifyContent="space-between">
-      <Stack justifyContent="space-between" alignItems="start">
-        <Typography variant="h6" component="p" minWidth={140} textAlign="start">
+      <Stack alignItems="start" justifyContent="space-between">
+        <Typography component="p" minWidth={140} textAlign="start" variant="h6">
           {loading ? <Skeleton /> : entity.name}
         </Typography>
-        <Typography variant="subtitle1" minWidth={100} textAlign="start">
+        <Typography minWidth={100} textAlign="start" variant="subtitle1">
           {loading ? (
             <Skeleton />
           ) : (
@@ -48,19 +47,19 @@ export const BillingEntity = (entity: Entity) => {
           )}
         </Typography>
       </Stack>
-      <Stack justifyContent="space-between" alignItems="end">
+      <Stack alignItems="end" justifyContent="space-between">
         <Typography
-          variant="body2"
-          minWidth={80}
-          textAlign="end"
-          py={0.75}
           color={trial ? grey[400] : 'default'}
+          minWidth={80}
+          py={0.75}
           sx={{ textDecorationLine: 'line-through', textDecorationThickness: loading ? 0 : 2 }}
+          textAlign="end"
+          variant="body2"
         >
           {loading ? <Skeleton /> : trial ? `$${convertToString(entity.total)}` : ''}
         </Typography>
 
-        <Typography variant="body1" minWidth={60} textAlign="end" py={0.25}>
+        <Typography minWidth={60} py={0.25} textAlign="end" variant="body1">
           {loading ? <Skeleton /> : trial ? '= $0' : `= $${convertToString(entity.total)}`}
         </Typography>
       </Stack>
@@ -76,7 +75,7 @@ export const BillingList = () => {
   });
 
   return (
-    <Stack spacing={1.5} divider={<Divider orientation="horizontal" />}>
+    <Stack divider={<Divider orientation="horizontal" />} spacing={1.5}>
       {list}
     </Stack>
   );

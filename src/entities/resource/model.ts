@@ -1,6 +1,5 @@
-import { createEvent, createStore } from 'effector';
-
 import { Code } from '#types/common';
+import { createEvent, createStore } from 'effector';
 
 export type Entity = Record<Code, number>;
 

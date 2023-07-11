@@ -1,3 +1,4 @@
+import { Code } from '#types/common';
 import { createEffect, createEvent, createStore, sample } from 'effector';
 
 import { costModel } from '@app/entities/cost';
@@ -5,15 +6,14 @@ import { periodModel } from '@app/entities/period';
 import { resourceModel } from '@app/entities/resource';
 import { randomTimeout } from '@app/shared/lib/randomTimeout';
 import { timeFactor } from '@app/shared/lib/timeFactor';
-import { Code } from '#types/common';
 
 export type Entity = {
   code: Code;
   name: string;
-  quantity: number;
+  period: periodModel.Entity;
   price: number;
   price_unit: string;
-  period: periodModel.Entity;
+  quantity: number;
   total: number;
 };
 
@@ -28,28 +28,28 @@ export const getBillingListFx = createEffect<BillingInfo, Entity[]>(
         {
           code: Code.domain,
           name: 'Domains',
-          quantity: resource[Code.domain],
+          period: period,
           price: cost[Code.domain] * timeFactor[period],
           price_unit: 'pcs',
-          period: period,
+          quantity: resource[Code.domain],
           total: cost[Code.domain] * resource[Code.domain] * timeFactor[period],
         },
         {
           code: Code.server,
           name: 'Servers',
-          quantity: resource[Code.server],
+          period: period,
           price: cost[Code.server] * timeFactor[period],
           price_unit: 'pcs',
-          period: period,
+          quantity: resource[Code.server],
           total: cost[Code.server] * resource[Code.server] * timeFactor[period],
         },
         {
           code: Code.forwarder,
           name: 'Forwarders',
-          quantity: resource[Code.forwarder],
+          period: period,
           price: cost[Code.forwarder] * timeFactor[period],
           price_unit: 'pcs',
-          period: period,
+          quantity: resource[Code.forwarder],
           total: cost[Code.forwarder] * resource[Code.forwarder] * timeFactor[period],
         },
       ];

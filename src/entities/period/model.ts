@@ -2,7 +2,7 @@ import { createEvent, createStore } from 'effector';
 
 import { LinkedList } from './lib';
 
-export type Entity = 'month' | /* 'week' | */ 'day' | 'hour';
+export type Entity = 'day' | /* 'week' | */ 'hour' | 'month';
 
 const periods: Array<Entity> = ['month', /* 'week', */ 'day', 'hour'];
 const node = new LinkedList<Entity>(periods).get(0);

@@ -1,10 +1,9 @@
 import { Skeleton, Typography } from '@mui/material';
 import { useStore } from 'effector-react';
 
+import { $loading, $totalCost } from './model';
 import { viewerModel } from '@app/entities/viewer';
 import { convertToString } from '@app/shared/lib/convertToString';
-
-import { $loading, $totalCost } from './model';
 
 export const TotalCost = () => {
   const trial = useStore(viewerModel.$isTrial);
@@ -12,7 +11,7 @@ export const TotalCost = () => {
   const totalCost = useStore($totalCost);
 
   return (
-    <Typography variant="h4" component="p" minWidth={140} textAlign="start">
+    <Typography component="p" minWidth={140} textAlign="start" variant="h4">
       {loading ? <Skeleton /> : trial ? '$0' : `$${convertToString(totalCost)}`}
     </Typography>
   );

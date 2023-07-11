@@ -5,7 +5,9 @@ import { defineConfig, UserConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
 import svgr from 'vite-plugin-svgr';
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
+  const DEV = mode === 'development';
+
   return {
     base: '/billing-widget/',
     resolve: {
@@ -43,8 +45,8 @@ export default defineConfig(() => {
       //   },
       // }),
       svgr(),
-      eslint(),
-    ],
+      DEV && eslint(),
+    ].filter(Boolean),
     server: {
       port: 1337,
       cors: true,
